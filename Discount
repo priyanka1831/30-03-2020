@@ -1,0 +1,51 @@
+
+
+import java.util.Scanner;
+
+public class DemoTranslation {
+	public static void main(String[] args) {
+		int fees, mark, finalFee = 0;
+		fees = STDIN_SCANNER.nextInt();
+		mark = STDIN_SCANNER.nextInt();
+		if(mark > 100) {
+			System.out.print("Invalid mark");
+		} else if(fees > 32_767) {
+			System.out.print("Invalid fees");
+		} else if(mark < 0 || fees < 0) {
+			System.out.print("Invalid input");
+		} else {
+			finalFee = feeCalculation(fees, mark);
+			System.out.print(finalFee);
+		}
+		nextChar(STDIN_SCANNER);
+		nextChar(STDIN_SCANNER);
+	}
+
+	public static int feeCalculation(int fee, int marks) {
+		int feeFinal = 0;
+		float discount = 0.0f;
+		if(marks > 90) {
+			discount = .50f;
+		} else if(marks > 80 && marks <= 90) {
+			discount = .25f;
+		} else if(marks >= 70 && marks <= 80) {
+			discount = .10f;
+		} else {
+			discount = 0;
+		}
+		feeFinal = (int)(fee - fee * discount);
+		return feeFinal;
+	}
+
+	public final static Scanner STDIN_SCANNER = new Scanner(System.in);
+
+	/**
+	 * This method is missing from the Scanner interface.
+	 */
+	public final static int nextChar(Scanner scanner) {
+		scanner.useDelimiter("");
+		int ret = scanner.next().charAt(0);
+		scanner.reset();
+		return ret;
+	}
+}
