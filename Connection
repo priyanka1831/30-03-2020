@@ -1,0 +1,70 @@
+
+
+import java.util.Scanner;
+
+public class Connection{
+	public static void main(String[] args) {
+		int n = 0;
+		int[] input = new int[20];
+		n = STDIN_SCANNER.nextInt();
+		if(n < 0) {
+			System.out.print("Invalid array size");
+			nextChar(STDIN_SCANNER);
+			nextChar(STDIN_SCANNER);
+			System.exit(0);
+		}
+		for(int i = 0; i < n; i++) {
+			input[i] = STDIN_SCANNER.nextInt();
+			if(input[i] < 0) {
+				System.out.print("Invalid Connection");
+				nextChar(STDIN_SCANNER);
+				nextChar(STDIN_SCANNER);
+				System.exit(0);
+			}
+		}
+
+		countNoOfConnections(input, n);
+
+		nextChar(STDIN_SCANNER);
+		nextChar(STDIN_SCANNER);
+	}
+
+	public static void countNoOfConnections(int[] connectionList, int no) {
+		int j, k = 0, temp = 0, x = 0, two = 0, three = 0, four = 0;
+		boolean other = true;
+		int[] out = new int[10];
+		for(int i = 0; i < no; i++) {
+			temp = connectionList[i];
+			x = temp / 1_000;
+
+			if(x == 2) {
+				two++;
+			} else if(x == 3) {
+				three++;
+			} else if(x == 4) {
+				four++;
+			} else {
+				other = false;
+			}
+		}
+		out[0] = two;
+		out[1] = three;
+		out[2] = four;
+
+		for(int i = 0; i < 3; i++) {
+			System.out.println(out[i]);
+		}
+	}
+
+	public final static Scanner STDIN_SCANNER = new Scanner(System.in);
+
+	/**
+	 * This method is missing from the Scanner interface.
+	 */
+	public final static int nextChar(Scanner scanner) {
+		scanner.useDelimiter("");
+		int ret = scanner.next().charAt(0);
+		scanner.reset();
+		return ret;
+	}
+}
