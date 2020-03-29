@@ -1,0 +1,55 @@
+
+
+import java.util.Scanner;
+
+public class Revenue {
+	public static void main(String[] args) {
+		int n = 0, highest;
+		int[] input = new int[20];
+		n = STDIN_SCANNER.nextInt();
+		if(n < 0) {
+			System.out.print("Invalid array size");
+			nextChar(STDIN_SCANNER);
+			nextChar(STDIN_SCANNER);
+			System.exit(0);
+		}
+		for(int i = 0; i < n; i++) {
+			input[i] = STDIN_SCANNER.nextInt();
+			if(input[i] < 0) {
+				System.out.print("Invalid input");
+				nextChar(STDIN_SCANNER);
+				nextChar(STDIN_SCANNER);
+				System.exit(0);
+			}
+		}
+
+		highest = highestProfitYear(input, n);
+		System.out.print(highest);
+		nextChar(STDIN_SCANNER);
+		nextChar(STDIN_SCANNER);
+	}
+
+	public static int highestProfitYear(int[] revenue, int size) {
+		int j, k = 0, highest = 0, max = 0;
+		for(int i = 1; i < size; i = i + 2) {
+			if(revenue[i] > max) {
+				max = revenue[i];
+				highest = revenue[i - 1];
+			}
+		}
+
+		return highest;
+	}
+
+	public final static Scanner STDIN_SCANNER = new Scanner(System.in);
+
+	/**
+	 * This method is missing from the Scanner interface.
+	 */
+	public final static int nextChar(Scanner scanner) {
+		scanner.useDelimiter("");
+		int ret = scanner.next().charAt(0);
+		scanner.reset();
+		return ret;
+	}
+}
